@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mahesh — Portfolio</title>
+<meta name="description" content="Mahesh is a student at Scaler School of Technology pursuing BITS BSc Computer Science, focused on AI/ML." />
+<meta property="og:title" content="Mahesh — Portfolio" />
+<meta property="og:description" content="Student at Scaler School of Technology, focused on AI/ML." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0A0A0B; --card:#17171C; --primary:#7C5CFF; --fg:#F5F5F5;
+    --muted:#A3A3AD; --border:rgba(255,255,255,.10);
+    --display:"Space Grotesk",system-ui,sans-serif;
+    --sans:"DM Sans",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);overflow-x:hidden;line-height:1.6}
+  h1,h2,h3,.btn{font-family:var(--display)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1024px;margin:0 auto;padding:0 24px;position:relative}
+  section{position:relative}
+
+  /* ambient glow */
+  .blob{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+  .blob1{top:-14rem;left:50%;transform:translateX(-50%);width:34rem;height:34rem;
+    background:rgba(124,92,255,.25);animation:float 9s ease-in-out infinite, glow 5s ease-in-out infinite}
+  .blob2{bottom:-8rem;right:-10%;width:26rem;height:26rem;background:rgba(124,92,255,.15);
+    animation:float 9s ease-in-out infinite;animation-delay:-4s}
+  @keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(4%,-6%) scale(1.08)}}
+  @keyframes glow{0%,100%{opacity:.5}50%{opacity:.9}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+  .up{animation:fadeUp .8s cubic-bezier(.22,1,.36,1) both}
+  .d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}
+  .d4{animation-delay:.55s}.d5{animation-delay:.7s}.d6{animation-delay:.85s}
+
+  /* hero */
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;max-width:896px;margin:0 auto;padding:80px 24px}
+  .avatar{position:relative}
+  .avatar::before{content:"";position:absolute;inset:-12px;border-radius:50%;background:rgba(124,92,255,.4);filter:blur(28px);animation:glow 5s ease-in-out infinite}
+  .avatar img{position:relative;width:144px;height:144px;border-radius:50%;object-fit:cover;
+    border:2px solid rgba(124,92,255,.5);box-shadow:0 0 0 4px rgba(124,92,255,.2),0 25px 50px -12px rgba(124,92,255,.4)}
+  .chip{display:inline-flex;align-items:center;gap:8px;margin-top:32px;padding:6px 16px;border-radius:999px;
+    border:1px solid rgba(124,92,255,.3);background:rgba(124,92,255,.1);color:var(--primary);font-size:14px;font-weight:500}
+  h1{margin-top:24px;font-size:clamp(48px,11vw,96px);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+  .name{background:linear-gradient(90deg,var(--primary),var(--primary),var(--fg));-webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 24px rgba(124,92,255,.35)}
+  .lead{margin-top:24px;max-width:36rem;color:var(--muted);font-size:18px}
+  .lead b{color:var(--fg);font-weight:600}
+  .btns{margin-top:40px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:999px;font-weight:600;
+    transition:transform .2s ease,border-color .2s ease}
+  .btn:hover{transform:scale(1.05)}
+  .btn-primary{background:var(--primary);color:#fff;box-shadow:0 10px 25px -8px rgba(124,92,255,.6)}
+  .btn-ghost{border:1px solid var(--border);background:rgba(23,23,28,.6);backdrop-filter:blur(8px)}
+  .btn-ghost:hover{border-color:rgba(124,92,255,.5)}
+  .scroll{margin-top:80px;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:12px;letter-spacing:.3em;text-transform:uppercase}
+  .scroll svg{animation:bounce 1.4s ease-in-out infinite}
+
+  /* sections */
+  .sec{padding:96px 0;scroll-margin-top:96px}
+  h2{font-size:clamp(28px,5vw,36px);font-weight:700;letter-spacing:-.02em}
+  .sub{margin-top:12px;max-width:42rem;color:var(--muted)}
+  .sub b{color:var(--fg);font-weight:600}
+  .grid{margin-top:48px;display:grid;gap:24px}
+  @media(min-width:640px){.grid2{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:repeat(3,1fr)}.avatar img{width:176px;height:176px}}
+  .card{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--border);background:rgba(23,23,28,.7);
+    border-radius:24px;padding:28px;backdrop-filter:blur(8px);
+    transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .3s}
+  .card:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.45);box-shadow:0 18px 40px -18px rgba(124,92,255,.35)}
+  .card.col{flex-direction:column}
+  .ico{flex:none;width:48px;height:48px;border-radius:16px;background:rgba(124,92,255,.15);color:var(--primary);
+    display:flex;align-items:center;justify-content:center}
+  .card h3{font-size:18px;font-weight:600}
+  .card.col h3{margin-top:20px;font-size:20px}
+  .card p{margin-top:6px;font-size:14px;color:var(--muted)}
+
+  /* contact */
+  .cta{border:1px solid rgba(124,92,255,.25);border-radius:24px;padding:64px 32px;text-align:center;
+    background:linear-gradient(to bottom,rgba(124,92,255,.15),rgba(23,23,28,.4));backdrop-filter:blur(8px)}
+  .cta p{margin:12px auto 0;max-width:28rem;color:var(--muted)}
+  footer{margin:56px 0;text-align:center;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="avatar up">
+    <img src="https://id-preview--7cbf2bdc-f125-4d9b-8853-7c2f00e546ee.lovable.app/__l5e/assets-v1/1c0b6ad1-5694-4fe6-856f-865f19341ce8/mahesh.png" alt="Portrait of Mahesh" />
+  </div>
+
+  <span class="chip up d1">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M5 5l2 2M19 5l-2 2M5 19l2-2M19 19l-2-2"/></svg>
+    Hello, welcome to my corner of the web
+  </span>
+
+  <h1 class="up d2">Hi, I'm <span class="name">Mahesh</span></h1>
+
+  <p class="lead up d3">A student on a journey — currently learning <b>Java</b>, <b>Python</b> and <b>Web Development</b>, one project at a time.</p>
+
+  <div class="btns up d4">
+    <a class="btn btn-primary" href="mailto:maheshsraghava@gmail.com">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+      Say hello
+    </a>
+    <a class="btn btn-ghost" href="https://github.com/MarvelZ78/Portfolio" target="_blank" rel="noreferrer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-1-2.6c3-.3 6.2-1.5 6.2-6.7A5.2 5.2 0 0 0 19.9 5a4.9 4.9 0 0 0-.1-3.6s-1.1-.3-3.7 1.4a12.6 12.6 0 0 0-6.6 0C6.9 1.1 5.8 1.4 5.8 1.4A4.9 4.9 0 0 0 5.7 5a5.2 5.2 0 0 0-1.4 3.8c0 5.2 3.2 6.4 6.2 6.7a3.4 3.4 0 0 0-1 2.6V22"/></svg>
+      GitHub
+    </a>
+  </div>
+
+  <a class="scroll up d5" href="#about" aria-label="Scroll to about me">
+    <span>Scroll</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+  </a>
+</section>
+
+<!-- About -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <h2 class="up">About me</h2>
+    <p class="sub up d1">I'm Mahesh, a student at <b>Scaler School of Technology (SST)</b>, pursuing my <b>BITS BSc Computer Science</b> as an external degree. With a strong focus on AI/ML, I'm exploring specialization pathways and enjoy project-based learning that connects theory to real builds.</p>
+
+    <div class="grid grid2">
+      <div class="card up d2">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div>
+        <div><h3>Studying at SST</h3><p>Student at Scaler School of Technology, pursuing my BITS BSc Computer Science as an external degree.</p></div>
+      </div>
+      <div class="card up d3">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><h3>Based in Bengaluru</h3><p>Living and learning in India's tech capital.</p></div>
+      </div>
+      <div class="card up d4">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5a3 3 0 1 0-5.9.8A3 3 0 0 0 4 12a3 3 0 0 0 2.1 5.2A3 3 0 0 0 12 19Z"/><path d="M12 5a3 3 0 1 1 5.9.8A3 3 0 0 1 20 12a3 3 0 0 1-2.1 5.2A3 3 0 0 1 12 19Z"/></svg></div>
+        <div><h3>Focused on AI/ML</h3><p>Exploring specialization pathways in AI/ML — where my curiosity is headed.</p></div>
+      </div>
+      <div class="card up d5">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg></div>
+        <div><h3>Project-based learning</h3><p>I enjoy connecting theory to real builds, one project at a time.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="sec" id="skills">
+  <div class="wrap">
+    <h2 class="up">What I'm learning</h2>
+    <p class="sub up d1">The tools I'm sharpening right now.</p>
+
+    <div class="grid grid3">
+      <div class="card col up d2">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v3M10 2v3M14 2v3"/></svg></div>
+        <h3>Java</h3><p>Building my core with objects, classes and problem solving.</p>
+      </div>
+      <div class="card col up d3">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16"/></svg></div>
+        <h3>Python</h3><p>Scripting, logic and exploring what code can automate.</p>
+      </div>
+      <div class="card col up d4">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/></svg></div>
+        <h3>Web Development</h3><p>HTML, CSS and JavaScript — crafting pages like this one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="wrap" style="padding-bottom:96px">
+  <div class="cta up">
+    <h2>Let's connect</h2>
+    <p>Want to chat about code, collaborate, or just say hi? My inbox is always open.</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="mailto:maheshsraghava@gmail.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        maheshsraghava@gmail.com
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/MarvelZ78/Portfolio" target="_blank" rel="noreferrer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-1-2.6c3-.3 6.2-1.5 6.2-6.7A5.2 5.2 0 0 0 19.9 5a4.9 4.9 0 0 0-.1-3.6s-1.1-.3-3.7 1.4a12.6 12.6 0 0 0-6.6 0C6.9 1.1 5.8 1.4 5.8 1.4A4.9 4.9 0 0 0 5.7 5a5.2 5.2 0 0 0-1.4 3.8c0 5.2 3.2 6.4 6.2 6.7a3.4 3.4 0 0 0-1 2.6V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+  <footer>© <span id="y"></span> Mahesh · Built with curiosity</footer>
+</section>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
